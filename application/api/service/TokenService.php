@@ -33,7 +33,7 @@ final class TokenService
     public function get(){
        $response = $this->send($this->wx_login);
        $uid = $this->save($response['openid']);
-       $token = $this->cacheToken($uid,$response['openid']);
+       $token = $this->cacheToken($uid,$response);
        return $token;
     }
 
@@ -67,11 +67,11 @@ final class TokenService
         return $uid;
     }
 
-    private function cacheToken($uid,$openid){
+    private function cacheToken($uid,$response){
         $token = TokenTool::makeToken();
         $cached = [
             'uid' => $uid,
-            'openid' => $openid,
+            'openid' => $response,
             'power' => power::son
         ];
         $time = config('wx.token_live_time');
@@ -84,7 +84,7 @@ final class TokenService
         return $token;
     }
 
-    private function pushLoginError($error){
+    private function pushLoginError($error = ''){
         if(!$error) {
             throw new TokenException([
                 'message' => '登录出错'

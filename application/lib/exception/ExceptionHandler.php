@@ -3,7 +3,7 @@ namespace app\lib\exception;
 
 use think\exception\Handle;
 
-class ExceptionHandler extends Handle{
+final class ExceptionHandler extends Handle{
 
     private $message = '';
     private $err_code = 0;

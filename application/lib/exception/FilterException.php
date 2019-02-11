@@ -10,6 +10,7 @@ namespace app\lib\exception;
 
 class FilterException extends BaseException
 {
+    //过滤自定义消息
     public $message = '';
     public $err_code = 10002;
     public $code = 403;

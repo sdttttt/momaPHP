@@ -21,9 +21,13 @@ class Token
         return sha1($chars.$code);
     }
 
-    public static function getTokenValue($kkey){
-        $key = Request::instance()->header("token");
-        $var = Cache::get($key);
+    public static function getUid(){
+        return self::getTokenValue("uid");
+    }
+
+    public static function getTokenValue($key){
+        $token = Request::instance()->header("token");
+        $var = Cache::get($token);
         if(!$var){
             throw new TokenException([
                 'message' => 'token不存在'
@@ -32,10 +36,25 @@ class Token
             if(!is_array($var)) {
                 json_decode($var,true);
             }
-            if(array_key_exists($kkey,$var)){
-                return $var[$kkey];
+            if(array_key_exists($key,$var)){
+                return $var[$key];
             }
         }
         throw new TokenException(['message'=>'token获取的变量不存在']);
+    }
+
+    public static function onlySon(){
+        $power = self::getTokenValue("power");
+        if(!$power){
+
+        }
+    }
+
+    public static function onExcludeFather(){
+
+    }
+
+    public static function onExcludeToken(){
+
     }
 }
