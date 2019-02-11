@@ -9,7 +9,7 @@
 namespace app\lib;
 
 
-class power
+class Power
 {
    const son = 1;
 

@@ -9,10 +9,9 @@
 namespace app\api\controller\v1;
 
 use app\api\service\TokenService;
+use app\api\Tools\Token as TokenTool;
+use app\lib\exception\TokenException;
 use app\lib\filter\TokenFilter;
-
-use think\Request;
-
 
 final class TokenController extends BaseController
 {
@@ -21,6 +20,18 @@ final class TokenController extends BaseController
         $service = new TokenService($code);
         $token = $service->get();
 
-        return $token;
+        return json([
+            'token' => $token
+        ]);
+    }
+
+    public function verify($token){
+        if(!$token){
+            throw new TokenException();
+        }
+        $result = TokenTool::verifyToken($token);
+        return json([
+            'isVerify' => $result
+        ]);
     }
 }

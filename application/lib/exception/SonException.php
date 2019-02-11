@@ -11,7 +11,7 @@ namespace app\lib\exception;
 
 class SonException extends BaseException
 {
-    public $message = '只有普通用户才能访问这里';
+    public $message = '只有登录才能访问，请重新进入小程序';
     public $err_code = 20002;
     public $code = 403;
 }

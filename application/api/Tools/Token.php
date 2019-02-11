@@ -9,7 +9,10 @@
 namespace app\api\Tools;
 
 
+use app\lib\exception\FatherException;
+use app\lib\exception\SonException;
 use app\lib\exception\TokenException;
+use app\lib\Power;
 use think\Cache;
 use think\Request;
 
@@ -40,21 +43,47 @@ class Token
                 return $var[$key];
             }
         }
-        throw new TokenException(['message'=>'token获取的变量不存在']);
+        throw new TokenException(['message'=>'token失效,重新登录中..']);
+    }
+
+    public static function verifyToken($token){
+        $exist = Cache::get($token);
+        return isset($exist);
     }
 
     public static function onlySon(){
         $power = self::getTokenValue("power");
         if(!$power){
-
+            throw new SonException();
+        }else{
+            if($power == Power::son){
+                return true;
+            }
+            throw new SonException();
         }
     }
 
-    public static function onExcludeFather(){
-
+    public static function onlyFather(){
+        $power = self::getTokenValue("power");
+        if(!$power){
+            throw new FatherException();
+        }else{
+            if($power == Power::father){
+                return true;
+            }
+            throw new FatherException();
+        }
     }
 
     public static function onExcludeToken(){
-
+        $power = self::getTokenValue("power");
+        if($power){
+            throw new TokenException(['message' =>'token失效,重新登录中..']);
+        }else{
+            if($power >= Power::son){
+                return true;
+            }
+            throw new TokenException(['message' =>'token失效,重新登录中..']);
+        }
     }
 }

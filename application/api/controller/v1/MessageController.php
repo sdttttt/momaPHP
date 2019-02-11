@@ -11,6 +11,10 @@ namespace app\api\controller\v1;
 
 final class MessageController extends BaseController
 {
+    protected $beforeActionList = [
+        'onlyUser' => ['only' => 'getMyMessage']
+    ];
+
     public function getMyMessage(){
 
     }

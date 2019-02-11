@@ -11,7 +11,7 @@ namespace app\api\service;
 use app\api\Tools\Token as TokenTool;
 use app\lib\exception\TokenException;
 use app\api\model\User as UserModel;
-use app\lib\power;
+use app\lib\Power;
 use think\cache\driver\Redis;
 
 final class TokenService
@@ -72,7 +72,7 @@ final class TokenService
         $cached = [
             'uid' => $uid,
             'openid' => $response,
-            'power' => power::son
+            'power' => Power::son
         ];
         $time = config('wx.token_live_time');
         $cached = json_encode($cached);
@@ -84,15 +84,11 @@ final class TokenService
         return $token;
     }
 
-    private function pushLoginError($error = ''){
-        if(!$error) {
-            throw new TokenException([
-                'message' => '登录出错'
-            ]);
-        }else{
-            throw new TokenException([
-                'message' => $error
-            ]);
-        }
+    private function pushLoginError(){
+        throw new TokenException([
+            'message' => '登录出现异常，请重新进入小程序',
+            'error' => 20003,
+            'code' => 500
+        ]);
     }
 }

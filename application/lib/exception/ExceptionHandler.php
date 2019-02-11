@@ -2,6 +2,7 @@
 namespace app\lib\exception;
 
 use think\exception\Handle;
+use think\Request;
 
 final class ExceptionHandler extends Handle{
 
@@ -29,8 +30,8 @@ final class ExceptionHandler extends Handle{
         return json([
             'message' => $this->message,
             'err_code' => $this->err_code,
-            'code' => $this->code
-        ]);
+            'url' => Request::instance()->url()
+        ],$this->code);
     }
 
 }

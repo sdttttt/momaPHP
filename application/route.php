@@ -18,4 +18,5 @@ Route::get('api/:version/banner/:id','api/:version.BannerController/getAllBanner
 Route::get('api/:version/theme/:id','api/:version.ThemeController/getHomeAll');
 
 #Token
-Route::get('api/:version/login/:code','api/:version.TokenController/login');
+Route::post('api/:version/login','api/:version.TokenController/login');
+Route::post('api/:version/verify','api/:version.TokenController/verify');
