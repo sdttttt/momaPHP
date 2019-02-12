@@ -37,7 +37,8 @@ class Token
             ]);
         }else{
             if(!is_array($var)) {
-                json_decode($var,true);
+
+               $var = json_decode($var,true);
             }
             if(array_key_exists($key,$var)){
                 return $var[$key];

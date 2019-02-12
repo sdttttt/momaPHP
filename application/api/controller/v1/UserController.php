@@ -15,6 +15,10 @@ use app\lib\exception\UserException;
 
 class UserController extends BaseController
 {
+    protected $beforeActionList = [
+        'onlySon' => ['only' => 'getWallet']
+    ];
+
     public function getWallet(){
         $openid = TokenTool::getTokenValue("openid");
         $result = UserModel::findWallet($openid);

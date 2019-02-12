@@ -71,7 +71,7 @@ final class TokenService
         $token = TokenTool::makeToken();
         $cached = [
             'uid' => $uid,
-            'openid' => $response,
+            'openid' => $response['openid'],
             'power' => Power::son
         ];
         $time = config('wx.token_live_time');
