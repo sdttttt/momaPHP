@@ -22,6 +22,8 @@ class UserController extends BaseController
             throw new UserException(['message' => '找不到！']);
         }
 
-        return $result;
+        return json([
+            'wallet' => $result
+        ]);
     }
 }
