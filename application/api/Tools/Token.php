@@ -48,7 +48,11 @@ class Token
 
     public static function verifyToken($token){
         $exist = Cache::get($token);
-        return isset($exist);
+        if(!$exist){
+            return false;
+        }else{
+            return true;
+        }
     }
 
     public static function onlySon(){

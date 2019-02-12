@@ -20,3 +20,6 @@ Route::get('api/:version/theme/:id','api/:version.ThemeController/getHomeAll');
 #Token
 Route::post('api/:version/login','api/:version.TokenController/login');
 Route::post('api/:version/verify','api/:version.TokenController/verify');
+
+#userINFO
+Route::post('api/:version/user/wallet','api/:version.UserController/getWallet');

@@ -31,7 +31,7 @@ final class TokenController extends BaseController
         }
         $result = TokenTool::verifyToken($token);
         return json([
-            'isVerify' => $result
+            'verify' => $result
         ]);
     }
 }
