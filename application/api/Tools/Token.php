@@ -14,6 +14,7 @@ use app\lib\exception\SonException;
 use app\lib\exception\TokenException;
 use app\lib\Power;
 use think\Cache;
+use think\cache\driver\Redis;
 use think\Request;
 
 class Token
@@ -30,7 +31,7 @@ class Token
 
     public static function getTokenValue($key){
         $token = Request::instance()->header("token");
-        $var = Cache::get($token);
+        $var = Redis::instance(Config("redisConfig"))->get($token);
         if(!$var){
             throw new TokenException([
                 'message' => 'token不存在'
@@ -48,7 +49,8 @@ class Token
     }
 
     public static function verifyToken($token){
-        $exist = Cache::get($token);
+        //$exist = Cache::get($token);
+        $exist = Redis::instance(Config("redisConfig"))->get($token);
         if(!$exist){
             return false;
         }else{

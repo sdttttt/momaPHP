@@ -23,3 +23,7 @@ Route::post('api/:version/verify','api/:version.TokenController/verify');
 
 #userINFO
 Route::post('api/:version/user/wallet','api/:version.UserController/getWallet');
+
+
+#test
+Route::get('test/one','api/TestController/testone');

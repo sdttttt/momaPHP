@@ -76,8 +76,12 @@ final class TokenService
         ];
         $time = config('wx.token_live_time');
         $cached = json_encode($cached);
-        $result = cache($token,$cached,$time);
-        //$result = (new Redis())->set($token,$cached,$time);
+
+        //如果没有配置redis请使用这个
+        //$result = cache($token,$cached,$time);
+
+        $result = Redis::instance(config("redisConfig"))
+            ->set($token,$cached,$time);
         if(!$result){
             $this->pushLoginError();
         }
