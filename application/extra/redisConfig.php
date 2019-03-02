@@ -4,6 +4,7 @@
  * User: sdttttt
  * Date: 2019/2/13
  * Time: 19:52
+ * Redis 配置
  */
 return [
     'host'       => '192.168.0.102',

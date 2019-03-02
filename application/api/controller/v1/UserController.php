@@ -13,7 +13,7 @@ use app\api\model\User as UserModel;
 use app\api\Tools\Token as TokenTool;
 use app\lib\exception\UserException;
 
-class UserController extends BaseController
+final class UserController extends BaseController
 {
     protected $beforeActionList = [
         'onlySon' => ['only' => 'getWallet']

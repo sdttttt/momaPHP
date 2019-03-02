@@ -8,7 +8,6 @@
 
 namespace app\api\controller\v1;
 
-
 final class MessageController extends BaseController
 {
     protected $beforeActionList = [

@@ -31,7 +31,8 @@ class Token
 
     public static function getTokenValue($key){
         $token = Request::instance()->header("token");
-        $var = Redis::instance(Config("redisConfig"))->get($token);
+        //$var = Redis::instance(Config("redisConfig"))->get($token);
+        $var = Cache::get($token);
         if(!$var){
             throw new TokenException([
                 'message' => 'token不存在'
@@ -49,8 +50,8 @@ class Token
     }
 
     public static function verifyToken($token){
-        //$exist = Cache::get($token);
-        $exist = Redis::instance(Config("redisConfig"))->get($token);
+        $exist = Cache::get($token);
+        //$exist = Redis::instance(Config("redisConfig"))->get($token);
         if(!$exist){
             return false;
         }else{

@@ -27,3 +27,7 @@ Route::post('api/:version/user/wallet','api/:version.UserController/getWallet');
 
 #test
 Route::get('test/one','api/TestController/testone');
+
+#Category
+Route::get('api/:version/category/all','api/:version.CategoryController/getProductAll');
+

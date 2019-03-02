@@ -13,6 +13,7 @@ return [
         'grant_type=client_credential&appid=%s&secret=%s',
     'app_id' => 'wxedcd71ddcc04678b',
     'app_secret' => 'de6a35eaa96cbae7f3cf28b67418045e',
+    'mch_id' => '',
     'rand_key' => 'zhousdtttttcun7758258haoFUCK',
     'token_live_time' => 7200
 ];

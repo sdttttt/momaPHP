@@ -78,10 +78,10 @@ final class TokenService
         $cached = json_encode($cached);
 
         //如果没有配置redis请使用这个
-        //$result = cache($token,$cached,$time);
+        $result = cache($token,$cached,$time);
 
-        $result = Redis::instance(config("redisConfig"))
-            ->set($token,$cached,$time);
+        /*$result = Redis::newInstance(config("redisConfig"))
+            ->set($token,$cached,$time);*/
         if(!$result){
             $this->pushLoginError();
         }

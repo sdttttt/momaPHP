@@ -8,6 +8,12 @@ use app\lib\filter\BannerFilter;
 #@Controller
 final class BannerController extends BaseController{
 
+    /**
+     * @param $id
+     * @return \think\response\Json
+     * @throws BannerException
+     * @throws \app\lib\exception\FilterException
+     */
     public function getAllBanner($id){
         (new BannerFilter())->goCheck();
         $id = intval($id);
