@@ -31,3 +31,6 @@ Route::get('test/one','api/TestController/testone');
 #Category
 Route::get('api/:version/category/all','api/:version.CategoryController/getProductAll');
 
+#Product
+Route::get('api/:version/product/:id','api/:version.ProductController/getOneProduct');
+

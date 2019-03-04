@@ -18,4 +18,8 @@ class Product extends BaseModel
     public function category(){
         return $this->belongsTo("Category",'category_id','id');
     }
+
+    public static function getOneProduct($id){
+        return self::with('image')->select($id);
+    }
 }
