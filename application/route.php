@@ -34,3 +34,5 @@ Route::get('api/:version/category/all','api/:version.CategoryController/getProdu
 #Product
 Route::get('api/:version/product/:id','api/:version.ProductController/getOneProduct');
 
+#Order
+Route::post('api/:version/order/make','api/:version.OrderController/make');

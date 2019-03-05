@@ -5,7 +5,7 @@ use app\lib\exception\FilterException;
 use think\Request;
 use think\Validate;
 
-class BaseFilter extends Validate{
+abstract class BaseFilter extends Validate{
 
     public function goCheck(){
         $request = Request::instance();
@@ -21,6 +21,7 @@ class BaseFilter extends Validate{
     }
 
     protected function isIntegerNumber($value,$rule = ''){
+        echo "开始验证整数";
         if(is_numeric($value) && is_int($value + 0) && ($value + 0)>0){
             return true;
         }
