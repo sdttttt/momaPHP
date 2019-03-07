@@ -13,5 +13,5 @@ class Power
 {
    const son = 1;
 
-   const father = 7758258;
+   const father = 555;
 }

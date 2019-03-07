@@ -11,6 +11,8 @@ namespace app\api\model;
 
 class Product extends BaseModel
 {
+    protected $autoWriteTimestamp = "date";
+
     public function image(){
         return $this->belongsTo("Image",'img_id','id');
     }
@@ -21,5 +23,21 @@ class Product extends BaseModel
 
     public static function getOneProduct($id){
         return self::with('image')->select($id);
+    }
+
+    public function updateProduct($product){
+        if(isset($product['id']))
+            $model = self::get($product['id']);
+        else
+            $model = new self();
+
+        $model->name = $product['name'];
+        $model->price = $product['price'];
+        $model->stock = $product['stock'];
+        $model->info = $product['info'];
+        $model->category_id = $product['categoryid'];
+        $model->img_id = $product['imgid'];
+
+        return $model->save();
     }
 }

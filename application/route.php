@@ -26,7 +26,7 @@ Route::post('api/:version/user/wallet','api/:version.UserController/getWallet');
 
 
 #test
-Route::get('test/one','api/TestController/testone');
+Route::get('test/one','api/TestController/testOne');
 
 #Category
 Route::get('api/:version/category/all','api/:version.CategoryController/getProductAll');
@@ -36,3 +36,10 @@ Route::get('api/:version/product/:id','api/:version.ProductController/getOneProd
 
 #Order
 Route::post('api/:version/order/make','api/:version.OrderController/make');
+
+// +----------------------------------------------------------------------
+// | Super User Power
+// +----------------------------------------------------------------------
+
+Route::get("api/admin/product/all",'api/admin.ProductController/getProductAll');
+Route::get('api/admin/category/all','api/admin.CategoryController/getCategoryAll');

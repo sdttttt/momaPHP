@@ -60,7 +60,7 @@ final class TokenService
     private function save($openid){
        $user = UserModel::findByOpenid($openid);
         if(!$user){
-            $uid = UserModel::create(['openid' => $openid])->id;
+            $uid = UserModel::create(['openid' => $openid , 'power' => Power::son])->id;
         }else{
             $uid = $user->id;
         }
