@@ -12,7 +12,7 @@ namespace app\lib\filter;
 use app\lib\exception\FilterException;
 use think\Validate;
 
-class OrderFilter extends BaseFilter
+class OrderFilter extends Filter
 {
     protected $rule = [
         'products' => 'checkProducts'

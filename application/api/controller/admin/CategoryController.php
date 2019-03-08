@@ -8,44 +8,35 @@
 
 namespace app\api\controller\admin;
 
-
-use app\api\controller\v1\BaseController;
 use app\api\model\Category;
+use app\api\model\Product;
 use app\lib\exception\CategoryException;
-use app\lib\exception\DbIDUSException;
-use app\lib\filter\super\CategoryFilter;
-use think\exception\DbException;
+use app\lib\filter\super\ProductFilter;
 
-class CategoryController extends BaseController
+class CategoryController extends AbstractController
 {
-    protected $beforeActionList = ['onlyFather'];
-
+    /**
+     * @return \think\response\Json
+     * @throws CategoryException
+     * @throws \app\lib\exception\BaseException
+     */
     public function getCategoryAll(){
-        try {
-            $result = Category::all();
-        } catch (DbException $e) {
-            throw new CategoryException();
-        }
-        if(!$result) throw new CategoryException();
+        $result = $this->getAll(new Category(),new CategoryException());
 
         return json($result);
     }
 
     public function updateCategory($category){
-        (new CategoryFilter())->goCheck();
-        $result = (new Category())->updateCategory($category);
-        if(!$result) throw new DbIDUSException(['message' => '类型更新失败']);
+        $this->update(new Category(),new ProductFilter(),$category);
+
         return json([
             'status' => true
         ]);
     }
 
+
     public function deleteCategory($categoryID){
-        try {
-            $result = Category::destroy($categoryID);
-        }catch (\Exception $e){
-            throw new DbIDUSException(['message' => '删除出错']);
-        }
+        $result = $this->delete(new Product(),$categoryID);
 
         return json([
             'deleteNumber' => $result

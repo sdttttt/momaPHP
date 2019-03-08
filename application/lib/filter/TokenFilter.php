@@ -9,7 +9,7 @@
 namespace app\lib\filter;
 
 
-class TokenFilter extends BaseFilter
+class TokenFilter extends Filter
 {
     protected $rule = [
         'code' => 'require'

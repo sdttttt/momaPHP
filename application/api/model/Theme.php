@@ -11,4 +11,11 @@ class Theme extends BaseModel
     public static function getHomeAll($id){
         return self::with("ThemeItem.image")->find($id);
     }
+
+    function updateExtend($value)
+    {
+        // TODO: Implement updateExtend() method.
+    }
+
+
 }

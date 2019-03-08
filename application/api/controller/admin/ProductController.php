@@ -8,25 +8,18 @@
 
 namespace app\api\controller\admin;
 
-
 use app\api\controller\v1\BaseController;
-use app\api\model\Image;
 use app\api\model\Product;
 use app\api\service\FileService;
 use app\lib\exception\DbIDUSException;
 use app\lib\exception\FileNotException;
 use app\lib\exception\ProductException;
 use app\lib\filter\super\ProductFilter;
-use think\Db;
-use think\Exception;
 use think\exception\DbException;
 use think\Request;
 
-class ProductController extends BaseController
+class ProductController extends AbstractController
 {
-
-    protected $beforeActionList = ['onlyFather'];
-
     /*
      * 传过来的参数应该有
      * @ 商品名
@@ -35,15 +28,9 @@ class ProductController extends BaseController
      * @ 商品库存量
      * @ 商品信息
      * @ 商品类型
-     *
      * */
-    public function updateProductInfo($product){
-        (new ProductFilter())->goCheck();
-
-        $result = (new Product())->updateProduct($product);
-
-        if(!$result) throw new DbIDUSException(['message' => '商品更新失败']);
-
+    public function updateProduct($product){
+        $this->update(new Product(),new ProductFilter(),$product);
         return json([
             'status' => true
         ]);
@@ -53,33 +40,19 @@ class ProductController extends BaseController
     # 这个商品图片上传之后会返回 商品图片的主键ID 请配合这个ID来做商品的添加
     public function productImageUpLoad(Request $request){
         $file = new FileService();
-
         $result = $file->imageUpload($request);
-
-        return json(['imgid' => $request]);
+        return json(['imgid' => $result]);
 
     }
 
     //获取所有商品信息
     public function getProductAll(){
-       try {
-            $return = Product::all();
-            if(!$return){
-                throw new ProductException();
-            }
-            return json($return);
-        } catch (DbException $e) {
-            throw new ProductException();
-        }
+        $result = $this->getAll(new Product(),new ProductException());
+        return json($result);
     }
 
     public function deleteProduct($productID){
-       try {
-           $result = Product::destroy($productID);
-       }catch (\Exception $e){
-           throw new DbIDUSException(['message' => '删除出错']);
-       }
-
+       $result = $this->delete(new Product(),$productID);
        return json([
            'deleteNumber' => $result
        ]);

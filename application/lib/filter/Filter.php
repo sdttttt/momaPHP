@@ -5,7 +5,7 @@ use app\lib\exception\FilterException;
 use think\Request;
 use think\Validate;
 
-abstract class BaseFilter extends Validate{
+abstract class Filter extends Validate{
 
     public function goCheck(){
         $request = Request::instance();

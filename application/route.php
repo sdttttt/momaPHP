@@ -27,7 +27,7 @@ Route::post('api/:version/user/wallet','api/:version.UserController/getWallet');
 
 #test
 Route::get('test/one','api/TestController/testOne');
-
+Route::get('test/tow','api/SonController/fuck');
 #Category
 Route::get('api/:version/category/all','api/:version.CategoryController/getProductAll');
 
@@ -43,3 +43,4 @@ Route::post('api/:version/order/make','api/:version.OrderController/make');
 
 Route::get("api/admin/product/all",'api/admin.ProductController/getProductAll');
 Route::get('api/admin/category/all','api/admin.CategoryController/getCategoryAll');
+Route::get('api/admin/banner/all','api/admin.BannerController/getBannerAll');

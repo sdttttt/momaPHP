@@ -9,7 +9,7 @@
 namespace app\lib\filter;
 
 
-class ThemeFilter extends BaseFilter
+class ThemeFilter extends Filter
 {
     protected $rule = [
         'id' => 'require|isIntegerNumber'

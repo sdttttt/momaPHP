@@ -1,7 +1,7 @@
 <?php
 namespace app\lib\filter;
 
-class BannerFilter extends BaseFilter{
+class BannerFilter extends Filter{
     protected $rule = [
         'id' => 'require|isIntegerNumber'
     ];

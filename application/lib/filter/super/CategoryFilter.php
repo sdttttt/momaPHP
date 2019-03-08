@@ -9,9 +9,9 @@
 namespace app\lib\filter\super;
 
 
-use app\lib\filter\BaseFilter;
+use app\lib\filter\Filter;
 
-class CategoryFilter extends BaseFilter
+class CategoryFilter extends Filter
 {
     protected $rule = [
         'category.id' => 'integer',

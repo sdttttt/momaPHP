@@ -25,11 +25,8 @@ class Product extends BaseModel
         return self::with('image')->select($id);
     }
 
-    public function updateProduct($product){
-        if(isset($product['id']))
-            $model = self::get($product['id']);
-        else
-            $model = new self();
+    public function updateExtend($product){
+        $model = $this->getUpdateModel($product);
 
         $model->name = $product['name'];
         $model->price = $product['price'];

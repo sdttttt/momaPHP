@@ -1,7 +1,7 @@
 <?php
 namespace app\lib\filter;
 
-class ProductFilter extends BaseFilter{
+class ProductFilter extends Filter{
     
     protected $rule = [
         'id' => 'require|isIntegerNumber'

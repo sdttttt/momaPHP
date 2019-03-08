@@ -20,20 +20,25 @@ final class TokenService
     private $appID;
     private $wxSecret;
     private $wx_login;
+    private $uid;
+    private $power;
 
+    /**
+     * TokenService constructor.
+     * @param $code
+     */
     public function __construct($code){
         $this->code = $code;
         $this->appID = config('wx.app_id');
         $this->wxSecret = config('wx.app_secret');
         $this->wx_login = sprintf(config('wx.wx_login'),
             $this->appID,$this->wxSecret,$this->code);
-
     }
 
     public function get(){
        $response = $this->send($this->wx_login);
-       $uid = $this->save($response['openid']);
-       $token = $this->cacheToken($uid,$response);
+       $this->save($response['openid']);
+       $token = $this->cacheToken($response);
        return $token;
     }
 
@@ -60,19 +65,21 @@ final class TokenService
     private function save($openid){
        $user = UserModel::findByOpenid($openid);
         if(!$user){
-            $uid = UserModel::create(['openid' => $openid , 'power' => Power::son])->id;
+            $model = UserModel::create(['openid' => $openid , 'power' => Power::son]);
+            $this->uid = $model->uid;
+            $this->power = $model->power;
         }else{
-            $uid = $user->id;
+            $this->uid = $user->id;
+            $this->power = $user->power;
         }
-        return $uid;
     }
 
-    private function cacheToken($uid,$response){
+    private function cacheToken($response){
         $token = TokenTool::makeToken();
         $cached = [
-            'uid' => $uid,
+            'uid' => $this->uid,
             'openid' => $response['openid'],
-            'power' => Power::son
+            'power' => $this->power
         ];
         $time = config('wx.token_live_time');
         $cached = json_encode($cached);

@@ -14,4 +14,9 @@ class Order extends BaseModel
     public function user(){
         return $this->belongsToMany('User','uid','id');
     }
+
+    function updateExtend($value)
+    {
+        // TODO: Implement updateExtend() method.
+    }
 }

@@ -13,4 +13,9 @@ class User extends BaseModel
         $model = self::where('openid',$openid)->find();
         return $model->wallet;
     }
+
+    function updateExtend($value)
+    {
+        // TODO: Implement updateExtend() method.
+    }
 }

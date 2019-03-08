@@ -17,11 +17,8 @@ class Category extends BaseModel
         return $this->hasMany('Product','category_id','id');
     }
 
-    public function updateCategory($category){
-        if(isset($category['id']))
-            $model = self::get($category['id']);
-        else
-            $model = new self();
+    public function updateExtend($category){
+        $model = $this->getUpdateModel($category);
 
         $model->name = $category['name'];
 

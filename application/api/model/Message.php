@@ -6,5 +6,8 @@ use think\Model;
 
 class Message extends Model
 {
-    //
+    function updateExtend($value)
+    {
+        // TODO: Implement updateExtend() method.
+    }
 }
