@@ -14,6 +14,7 @@ use app\lib\exception\BaseException;
 use app\lib\exception\DbIDUSException;
 use app\lib\filter\Filter;
 use think\exception\DbException;
+use think\Request;
 
 /*
  * 2019-3-7
@@ -82,9 +83,10 @@ abstract class AbstractController extends BaseController
      * @throws DbIDUSException
      * @throws \app\lib\exception\FilterException
      */
-     protected function update(AbstractModel $model, Filter $filter, $info) {
-        $filter->goCheck();
-        $result = $model->updateExtend($info);
+     protected function update(AbstractModel $model, Filter $filter, $name) {
+         empty($filter) ?: $filter->goCheck();
+         $params = Request::instance()->param();
+        $result = $model->updateExtend($params[$name]);
         if(!$result) throw new DbIDUSException(['message' => '类型更新失败']);
     }
 

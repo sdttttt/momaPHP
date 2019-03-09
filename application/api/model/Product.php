@@ -28,12 +28,18 @@ class Product extends AbstractModel
     public function updateExtend($product){
         $model = $this->getUpdateModel($product);
 
-        !array_key_exists('name',$product) ?: $model->name = $product['name'];
-        !array_key_exists('price',$product) ?: $model->price = $product['price'];
-        !array_key_exists('stock',$product) ?: $model->stock = $product['stock'];
-        !array_key_exists('info',$product) ?: $model->info = $product['info'];
-        !array_key_exists('categoryid',$product) ?: $model->category_id = $product['categoryid'];
-        !array_key_exists('imgid',$product) ?: $model->img_id = $product['imgid'];
+        !array_key_exists('name',$product) ?:
+            $model->data['name'] = $product['name'];
+        !array_key_exists('price',$product) ?:
+            $model->data['price'] = $product['price'];
+        !array_key_exists('stock',$product) ?:
+            $model->data['stock'] = $product['stock'];
+        !array_key_exists('info',$product) ?:
+            $model->data['info'] = $product['info'];
+        !array_key_exists('categoryid',$product) ?:
+            $model->data['category_id'] = $product['categoryid'];
+        !array_key_exists('imgid',$product) ?:
+            $model->data['img_id'] = $product['imgid'];
 
         return $model->save();
     }

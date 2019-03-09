@@ -26,8 +26,9 @@ class CategoryController extends AbstractController implements IDUSAbstract
         return json($result);
     }
 
-    public function updateImpl($category){
-        $this->update(new Category(),new ProductFilter(),$category);
+    public function updateImpl(){
+        $name = 'category';
+        $this->update(new Category(),new ProductFilter(),$name);
 
         return json([
             'status' => true

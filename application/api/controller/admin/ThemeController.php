@@ -20,8 +20,9 @@ class ThemeController extends AbstractController implements IDUSAbstract
         return json($result);
     }
 
-    public function updateImpl($theme){
-        $this->update(new Theme(),new ThemeFilter(),$theme);
+    public function updateImpl(){
+        $name = 'theme';
+        $this->update(new Theme(),new ThemeFilter(),$name);
         return json(['status' => true ]);
     }
 

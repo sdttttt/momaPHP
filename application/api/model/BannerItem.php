@@ -15,8 +15,10 @@ class BannerItem extends AbstractModel{
     function updateExtend($value){
         $model = $this->getUpdateModel($value);
 
-        !array_key_exists("bannerid",$value) ?: $model->banner_id = $value['bannerid'];
-        !array_key_exists("imgid",$value) ?: $model->img_id = $value['imgid'];
+        !array_key_exists("bannerid",$value) ?:
+            $model->data['banner_id'] = $value['bannerid'];
+        !array_key_exists("imgid",$value) ?:
+            $model->data['img_id'] = $value['imgid'];
 
         $model->save();
     }

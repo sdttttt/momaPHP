@@ -1,9 +1,11 @@
 <?php
 namespace app\api\model;
 
-class Banner extends AbstractModel{
+class Banner extends AbstractModel
+{
+    protected $autoWriteTimestamp = true;
+    protected $createTime = 'create_time';
 
-    protected $autoWriteTimestamp = 'date';
 
     public function BannerItem(){
         return $this->hasMany('BannerItem','banner_id','id');
@@ -16,10 +18,8 @@ class Banner extends AbstractModel{
 
     public function updateExtend($banner){
         $model = $this->getUpdateModel($banner);
-
-        !array_key_exists("name",$banner) ?: $model->name = $banner['name'];
-
+        !array_key_exists('name',$banner) ?:
+            $model->data['name'] = $banner['name'];
         return $model->save();
     }
-
 }

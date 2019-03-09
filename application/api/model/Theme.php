@@ -17,7 +17,8 @@ class Theme extends AbstractModel
     function updateExtend($value){
         $model = $this->getUpdateModel($value);
 
-        !array_key_exists('name',$value) ?: $model->name = $value['name'];
+        !array_key_exists('name',$value) ?:
+            $model->data['name']= $value['name'];
 
         $model->save();
     }

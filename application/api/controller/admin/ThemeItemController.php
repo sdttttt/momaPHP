@@ -25,8 +25,9 @@ class ThemeItemController extends AbstractController implements IDUSAbstract
         return json([ 'deleteNumber' => $result ]);
     }
 
-    function updateImpl($themeitem){
-        $this->update(new ThemeItem(),new ThemeItemFilter(),$themeitem);
+    function updateImpl(){
+        $name = 'themeitem';
+        $this->update(new ThemeItem(),new ThemeItemFilter(),$name);
         return json(['status' => true]);
     }
 }

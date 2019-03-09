@@ -8,15 +8,9 @@
 
 namespace app\api\controller\admin;
 
-use app\api\controller\v1\BaseController;
 use app\api\model\Product;
-use app\api\service\FileService;
-use app\lib\exception\DbIDUSException;
-use app\lib\exception\FileNotException;
 use app\lib\exception\ProductException;
 use app\lib\filter\super\ProductFilter;
-use think\exception\DbException;
-use think\Request;
 
 class ProductController extends AbstractController implements IDUSAbstract
 {
@@ -29,8 +23,9 @@ class ProductController extends AbstractController implements IDUSAbstract
      * @ 商品信息
      * @ 商品类型
      * */
-    public function updateImpl($product){
-        $this->update(new Product(),new ProductFilter(),$product);
+    public function updateImpl(){
+        $name = 'product';
+        $this->update(new Product(),new ProductFilter(),$name);
         return json([
             'status' => true
         ]);

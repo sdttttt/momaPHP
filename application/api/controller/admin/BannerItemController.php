@@ -17,11 +17,12 @@ class BannerItemController extends AbstractController implements IDUSAbstract
     public function getAllImpl(){
         $result = $this->getAll(new BannerItem(),
             new BannerException(['message' => '获取Banner条目失败']));
-        return $result;
+        return json($result);
     }
 
-    public function updateImpl($banneritem){
-        $this->update(new BannerItem(),new BannerItemFilter(),$banneritem);
+    public function updateImpl(){
+        $name = 'banneritem';
+        $this->update(new BannerItem(),new BannerItemFilter(),$name);
         return json([
             'status' => true
         ]);

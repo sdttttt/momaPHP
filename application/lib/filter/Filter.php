@@ -28,4 +28,11 @@ abstract class Filter extends Validate{
         return false;
     }
 
+    protected function string($value){
+        if(is_string($value) && strval($value)){
+            return true;
+        }
+        return false;
+    }
+
 }

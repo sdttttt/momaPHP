@@ -11,12 +11,13 @@ namespace app\api\controller\admin;
 use app\api\model\Banner;
 use app\lib\exception\BannerException;
 use app\lib\filter\super\BannerFilter;
+use think\Request;
 
 class BannerController extends AbstractController implements IDUSAbstract
 {
     public function getAllImpl(){
        $result = $this->getAll(new Banner(),new BannerException());
-       return $result;
+       return json($result);
     }
 
     public function deleteImpl($bannerID){
@@ -26,8 +27,9 @@ class BannerController extends AbstractController implements IDUSAbstract
         ]);
     }
 
-    public function updateImpl($banner){
-        $this->update(new Banner(),new BannerFilter(),$banner);
+    public function updateImpl(){
+        $name = 'banner';
+        $this->update(new Banner(),new BannerFilter(),$name);
         return json(array(
             'status' => true
         ));

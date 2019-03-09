@@ -20,5 +20,5 @@ interface IDUSAbstract
 
     function deleteImpl($objectID);
 
-    function updateImpl($object);
+    function updateImpl();
 }

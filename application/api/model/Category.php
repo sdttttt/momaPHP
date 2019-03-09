@@ -20,7 +20,8 @@ class Category extends AbstractModel
     public function updateExtend($category){
         $model = $this->getUpdateModel($category);
 
-        !array_key_exists('name',$category) ?: $model->name = $category['name'];
+        !array_key_exists('name',$category) ?:
+            $model->data['name'] = $category['name'];
 
         return $model->save();
     }
