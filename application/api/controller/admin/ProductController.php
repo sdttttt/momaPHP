@@ -18,7 +18,7 @@ use app\lib\filter\super\ProductFilter;
 use think\exception\DbException;
 use think\Request;
 
-class ProductController extends AbstractController
+class ProductController extends AbstractController implements IDUSAbstract
 {
     /*
      * 传过来的参数应该有
@@ -29,29 +29,20 @@ class ProductController extends AbstractController
      * @ 商品信息
      * @ 商品类型
      * */
-    public function updateProduct($product){
+    public function updateImpl($product){
         $this->update(new Product(),new ProductFilter(),$product);
         return json([
             'status' => true
         ]);
     }
 
-    # 文件上传
-    # 这个商品图片上传之后会返回 商品图片的主键ID 请配合这个ID来做商品的添加
-    public function productImageUpLoad(Request $request){
-        $file = new FileService();
-        $result = $file->imageUpload($request);
-        return json(['imgid' => $result]);
-
-    }
-
     //获取所有商品信息
-    public function getProductAll(){
+    public function getAllImpl(){
         $result = $this->getAll(new Product(),new ProductException());
         return json($result);
     }
 
-    public function deleteProduct($productID){
+    public function deleteImpl($productID){
        $result = $this->delete(new Product(),$productID);
        return json([
            'deleteNumber' => $result

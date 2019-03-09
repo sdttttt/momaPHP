@@ -2,8 +2,10 @@
 
 namespace app\api\model;
 
-class Theme extends BaseModel
+class Theme extends AbstractModel
 {
+    protected $autoWriteTimestamp = 'date';
+
     public function ThemeItem(){
         return $this->hasMany("ThemeItem",'theme_id','id');
     }
@@ -12,9 +14,12 @@ class Theme extends BaseModel
         return self::with("ThemeItem.image")->find($id);
     }
 
-    function updateExtend($value)
-    {
-        // TODO: Implement updateExtend() method.
+    function updateExtend($value){
+        $model = $this->getUpdateModel($value);
+
+        !array_key_exists('name',$value) ?: $model->name = $value['name'];
+
+        $model->save();
     }
 
 

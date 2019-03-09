@@ -14,16 +14,16 @@ use app\lib\filter\Filter;
 class BannerItemFilter extends Filter
 {
     protected $rule = [
+        'banneritem' => 'require',
         'banneritem.id' => 'integer',
-        'banneritem.bannerid' => 'require|integer',
-        'banneritem.imgid' => 'require|integer'
+        'banneritem.bannerid' => 'integer',
+        'banneritem.imgid' => 'integer'
     ];
 
     protected $message = [
+        'banneritem.require' => '你传过来的是空的，我怎么存？',
         'banneritem.id.integer' => 'id必须为正整数',
-        'banneritem.bannerid.require' => 'bannerid不能为空',
         'banneritem.bannerid.integer' => 'bannerid必须为正整数',
-        'banneritem.imgid.require' => 'imgid必须为正整数',
         'banneritem.imgid.integer' => 'imgid不能为空'
     ];
 

@@ -21,7 +21,7 @@ abstract class Filter extends Validate{
     }
 
     protected function isIntegerNumber($value,$rule = ''){
-        echo "开始验证整数";
+
         if(is_numeric($value) && is_int($value + 0) && ($value + 0)>0){
             return true;
         }

@@ -41,6 +41,6 @@ Route::post('api/:version/order/make','api/:version.OrderController/make');
 // | Super User Power
 // +----------------------------------------------------------------------
 
-Route::get("api/admin/product/all",'api/admin.ProductController/getProductAll');
-Route::get('api/admin/category/all','api/admin.CategoryController/getCategoryAll');
-Route::get('api/admin/banner/all','api/admin.BannerController/getBannerAll');
+Route::get("api/admin/product/all",'api/admin.ProductController/getAllImpl');
+Route::get('api/admin/category/all','api/admin.CategoryController/getAllImpl');
+Route::get('api/admin/banner/all','api/admin.BannerController/getAllImpl');

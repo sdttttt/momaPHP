@@ -1,7 +1,7 @@
 <?php
 namespace app\api\model;
 
-class Banner extends BaseModel{
+class Banner extends AbstractModel{
 
     protected $autoWriteTimestamp = 'date';
 
@@ -17,7 +17,7 @@ class Banner extends BaseModel{
     public function updateExtend($banner){
         $model = $this->getUpdateModel($banner);
 
-        $model->name = $banner['name'];
+        !array_key_exists("name",$banner) ?: $model->name = $banner['name'];
 
         return $model->save();
     }

@@ -9,7 +9,7 @@
 namespace app\api\model;
 
 
-class Product extends BaseModel
+class Product extends AbstractModel
 {
     protected $autoWriteTimestamp = "date";
 
@@ -28,12 +28,12 @@ class Product extends BaseModel
     public function updateExtend($product){
         $model = $this->getUpdateModel($product);
 
-        $model->name = $product['name'];
-        $model->price = $product['price'];
-        $model->stock = $product['stock'];
-        $model->info = $product['info'];
-        $model->category_id = $product['categoryid'];
-        $model->img_id = $product['imgid'];
+        !array_key_exists('name',$product) ?: $model->name = $product['name'];
+        !array_key_exists('price',$product) ?: $model->price = $product['price'];
+        !array_key_exists('stock',$product) ?: $model->stock = $product['stock'];
+        !array_key_exists('info',$product) ?: $model->info = $product['info'];
+        !array_key_exists('categoryid',$product) ?: $model->category_id = $product['categoryid'];
+        !array_key_exists('imgid',$product) ?: $model->img_id = $product['imgid'];
 
         return $model->save();
     }

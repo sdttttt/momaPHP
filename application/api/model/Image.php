@@ -2,7 +2,7 @@
 
 namespace app\api\model;
 
-class Image extends BaseModel
+class Image extends AbstractModel
 {
     function updateExtend($value)
     {

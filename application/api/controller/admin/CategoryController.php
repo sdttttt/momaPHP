@@ -13,20 +13,20 @@ use app\api\model\Product;
 use app\lib\exception\CategoryException;
 use app\lib\filter\super\ProductFilter;
 
-class CategoryController extends AbstractController
+class CategoryController extends AbstractController implements IDUSAbstract
 {
     /**
      * @return \think\response\Json
      * @throws CategoryException
      * @throws \app\lib\exception\BaseException
      */
-    public function getCategoryAll(){
+    public function getAllImpl(){
         $result = $this->getAll(new Category(),new CategoryException());
 
         return json($result);
     }
 
-    public function updateCategory($category){
+    public function updateImpl($category){
         $this->update(new Category(),new ProductFilter(),$category);
 
         return json([
@@ -35,7 +35,7 @@ class CategoryController extends AbstractController
     }
 
 
-    public function deleteCategory($categoryID){
+    public function deleteImpl($categoryID){
         $result = $this->delete(new Product(),$categoryID);
 
         return json([

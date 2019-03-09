@@ -2,9 +2,7 @@
 
 namespace app\api\model;
 
-use think\Model;
-
-class Message extends Model
+class Message extends AbstractModel
 {
     function updateExtend($value)
     {

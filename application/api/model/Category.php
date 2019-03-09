@@ -9,7 +9,7 @@
 namespace app\api\model;
 
 
-class Category extends BaseModel
+class Category extends AbstractModel
 {
     protected $autoWriteTimestamp = 'date';
 
@@ -20,7 +20,7 @@ class Category extends BaseModel
     public function updateExtend($category){
         $model = $this->getUpdateModel($category);
 
-        $model->name = $category['name'];
+        !array_key_exists('name',$category) ?: $model->name = $category['name'];
 
         return $model->save();
     }
