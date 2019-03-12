@@ -40,6 +40,7 @@ abstract class AbstractController extends BaseController
     /**
      * 抽象的获取数据表所有对象
      * 需要注入 模型对象 异常对象
+     *
      * @param AbstractModel $model
      * @param BaseException $exception
      * @return AbstractModel[]|false|\think\response\Json
@@ -60,6 +61,7 @@ abstract class AbstractController extends BaseController
     /**
      * 抽象的删除数据表对象
      * 需要注入 模型对象 Primary
+     *
      * @param AbstractModel $model
      * @param $id
      * @return int
@@ -77,6 +79,7 @@ abstract class AbstractController extends BaseController
     /**
      * 抽象的更新数据表对象
      * 需要注入 模型对象 过滤器对象 更新信息
+     *
      * @param AbstractModel $model
      * @param Filter $filter
      * @param $info

@@ -69,10 +69,11 @@ Route::delete('api/admin/product/:productID','api/admin.ProductController/delete
 Route::delete('api/admin/theme/:themeID','api/admin.ThemeController/deleteimpl');
 Route::delete('api/admin/themeitem/:themeitemID','api/admin.ThemeItemController/deleteimpl');
 
-// +----------------------------------------------------------------------
+// +-----------------------------------------------------------gettoken-----------
 // | Unit Test
 // +----------------------------------------------------------------------
 
 #test
 Route::get('test/one','api/TestController/testS');
 Route::get('test/tow','api/SonController/fuck');
+Route::get('jizhiyun/:version/gettoken','api/:version.GizwitsController/getToken');
